@@ -4,7 +4,7 @@ function App() {
   return(
     <div className='hero-videobg'>
       <video autoPlay muted loop className='background-video'>
-        <source src='./assets/video/bg.webm' type='video/webm'></source>
+        <source src='src\assets\video\bg.webm' type='video/webm'></source>
       </video>
       <div className='darken'></div>
     </div>
