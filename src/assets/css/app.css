@@ -17,6 +17,10 @@
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
+
+  background-image: url("../images/bg.jpg");
+  background-size:  cover;
+  background-position: center center;
 }
 
 .darken {
@@ -25,5 +29,5 @@
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
 }/*# sourceMappingURL=app.css.map */
