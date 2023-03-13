@@ -1,0 +1,30 @@
+:root {
+    box-sizing: border-box;
+}
+
+.hero-videobg {
+    width:              100%;
+    min-height:         100vh;
+    background-color:   black;
+    padding:            none;
+    margin:             0;
+
+    display:            flex;
+}
+
+.background-video {
+    position:   fixed;
+    right:      0;
+    bottom:     0;
+    min-width:  100%;
+    min-height: 100%;
+}
+
+.darken {
+    position:   fixed;
+    right:      0;
+    bottom:     0;
+    min-width:  100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
