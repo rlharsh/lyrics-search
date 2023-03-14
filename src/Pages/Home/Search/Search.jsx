@@ -4,9 +4,8 @@ import axios from 'axios'
 
 import '../../../assets/css/search.css';
 import Featured from '../../../Components/Featured/Featured';
-
-import { Media, Player, controls } from 'react-media-player'
-const { PlayPause, MuteUnmute } = controls
+import Tile from '../../../Components/Tile/Tile';
+import uuid from 'react-uuid';
 
 const Search = () => {
 
@@ -42,36 +41,25 @@ const Search = () => {
 
     const renderResults = () => {
         return(
-            <div>
-                Results
-            </div>
+                    results.map(item => {
+                        return <Tile key={uuid()} data={item}/>
+                    })
+                
         )
     }
 
     return (
         <div className='search'>
             <div className='search__left'>
-                <h1>{ params.id }</h1>
-                <h2>Top Result</h2>
+                <h2>Featured Result</h2>
 
                 { renderFeatured() }
 
             </div>
             <div className='search__right'>
+                <h2>Potential Matches</h2>
                 { renderResults() }
             </div>
-
-            <Media>
-        <div className="media">
-          <div className="media-player">
-            <Player src="http://www.youtube.com/embed/h3YVKTxTOgU" />
-          </div>
-          <div className="media-controls">
-            <PlayPause />
-            <MuteUnmute />
-          </div>
-        </div>
-      </Media>
             
         </div>
     )

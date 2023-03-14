@@ -1,11 +1,24 @@
 .featured {
   display: flex;
   flex-direction: column;
+  max-width: 488px;
+}
+.featured__wrapper {
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .featured__cover {
-  max-width: 488px;
-  max-height: 488px;
+  min-width: 488px;
+  min-height: 488px;
   border-radius: 10px;
+  transition: 0.4s;
+}
+.featured__cover:hover {
+  transform: scale(1.2);
 }
 .featured h2 {
   margin-top: 1rem;

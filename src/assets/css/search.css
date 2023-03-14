@@ -4,7 +4,7 @@ body {
 
 .search {
   max-width: 1440px;
-  margin: 1rem auto;
+  margin: 4rem auto;
   width: 100%;
   color: #FFF;
   font-size: 1.5rem;
@@ -13,9 +13,11 @@ body {
 }
 .search__left {
   flex: 1 1 50%;
+  position: sticky;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-self: flex-start;
 }
 .search__left h1 {
   font-style: italic;
@@ -27,10 +29,16 @@ body {
   content: '"';
 }
 .search__left h2 {
-  margin-top: 2rem;
   font-size: 1.25rem;
   color: #C0C0C0;
 }
 .search__right {
   flex: 1 1 50%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+.search__right h2 {
+  font-size: 1.25rem;
+  color: #C0C0C0;
 }/*# sourceMappingURL=search.css.map */

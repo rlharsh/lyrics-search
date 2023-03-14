@@ -7,7 +7,9 @@ const Featured = (props) => {
     const renderImage = () => {
         if (props.data != null) {
             return(
-                <img className='featured__cover' src={props.data.result.header_image_thumbnail_url} alt="album cover" />
+                <div className='featured__wrapper'>
+                    <img className='featured__cover' src={props.data.result.header_image_url} alt="album cover" />
+                </div>
             )
         }
     }
