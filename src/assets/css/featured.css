@@ -1,0 +1,25 @@
+.featured {
+  display: flex;
+  flex-direction: column;
+}
+.featured__cover {
+  max-width: 488px;
+  max-height: 488px;
+  border-radius: 10px;
+}
+.featured h2 {
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: #FFF;
+}
+.featured h2::before {
+  content: '"';
+}
+.featured h2::after {
+  content: '"';
+}
+.featured h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #C0C0C0;
+}/*# sourceMappingURL=featured.css.map */
