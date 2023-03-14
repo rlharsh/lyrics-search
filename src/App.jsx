@@ -1,11 +1,14 @@
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './assets/css/app.css';
+import Home from './Pages/Home/Home';
 
 function App() {
   return(
-    <div className='hero-videobg'>
-      <div className='background-video'></div>
-      <div className='darken'></div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
