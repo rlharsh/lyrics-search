@@ -5,6 +5,9 @@ import axios from 'axios'
 import '../../../assets/css/search.css';
 import Featured from '../../../Components/Featured/Featured';
 
+import { Media, Player, controls } from 'react-media-player'
+const { PlayPause, MuteUnmute } = controls
+
 const Search = () => {
 
     const [results, setResults] = useState([]);
@@ -58,7 +61,17 @@ const Search = () => {
                 { renderResults() }
             </div>
 
-
+            <Media>
+        <div className="media">
+          <div className="media-player">
+            <Player src="http://www.youtube.com/embed/h3YVKTxTOgU" />
+          </div>
+          <div className="media-controls">
+            <PlayPause />
+            <MuteUnmute />
+          </div>
+        </div>
+      </Media>
             
         </div>
     )
