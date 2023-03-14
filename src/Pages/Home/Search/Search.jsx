@@ -5,8 +5,6 @@ import axios from 'axios'
 import '../../../assets/css/search.css';
 import Featured from '../../../Components/Featured/Featured';
 
-import YouTube from 'react-youtube';
-
 const Search = () => {
 
     const [results, setResults] = useState([]);
@@ -60,11 +58,6 @@ const Search = () => {
                 { renderResults() }
             </div>
 
-        <React.Suspense>
-            <YouTube
-            videoId='6H2G84ga0iU'
-            />
-        </React.Suspense>
 
             
         </div>
