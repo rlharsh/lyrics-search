@@ -8,6 +8,7 @@ const Featured = (props) => {
         if (props.data != null) {
             return(
                 <div className='featured__wrapper'>
+                    <div className='featured__wrapper__meta'>{renderDate()}</div>
                     <img className='featured__cover' src={props.data.result.header_image_url} alt="album cover" />
                 </div>
             )
@@ -26,6 +27,14 @@ const Featured = (props) => {
         if (props.data != null) {
             return(
                 <h3>{props.data.result.artist_names}</h3>
+            )
+        }
+    }
+
+    const renderDate = () => {
+        if (props.data != null) {
+            return(
+                <h4>{props.data.result.release_date_for_display}</h4>
             )
         }
     }

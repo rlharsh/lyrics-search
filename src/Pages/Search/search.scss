@@ -3,21 +3,26 @@ body {
 }
 
 .search {
+    position: relative;
     max-width:      1440px;
-    margin:         4rem auto;
+    margin:         6rem auto;
     width:          100%;
     color:          #FFF;
     font-size:      1.5rem;
 
     display:        flex;
-    gap:            1rem;
+    gap:            4rem;
 
     &__left {
+
         flex: 1 1 50%;
-        position: sticky;
+        
         display:    flex;
         flex-direction: column;
         gap:            1rem;
+
+        position: sticky;
+        top: 6rem;
 
         align-self: flex-start;
 
@@ -41,6 +46,8 @@ body {
 
     &__right {
         flex: 1 1 50%;
+
+        margin-top: 2.4rem;
 
         display: flex;
         gap: 1rem;

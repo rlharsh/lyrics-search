@@ -1,0 +1,26 @@
+.header-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1E1E1E;
+  z-index: 1;
+}
+.header-wrapper__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+}
+.header-wrapper__inner input[type=text] {
+  position: relative;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  background-color: #141414;
+  border: none;
+  width: 26.5rem;
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  color: #FFF;
+}/*# sourceMappingURL=header.css.map */
