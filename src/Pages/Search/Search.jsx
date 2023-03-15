@@ -19,7 +19,6 @@ const Search = () => {
     const params = useParams();
     const apiKey = '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566';
 
-
     useEffect(() => {
         if (location.state && location.state.refresh) {
             setShouldRefresh(true);
@@ -62,10 +61,14 @@ const Search = () => {
     const renderResults = () => {
         return(
                     results.map(item => {
-                        return <Tile key={uuid()} data={item}/>
+                        return <Tile key={uuid()} data={item} doClick={doClick}/>
                     })
                 
         )
+    }
+
+    const doClick = (e) => {
+
     }
 
     return (

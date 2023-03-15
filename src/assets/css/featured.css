@@ -43,6 +43,7 @@
   margin-top: 1rem;
   font-size: 2rem;
   color: #FFF;
+  font-weight: 700;
 }
 .featured h2::before {
   content: '"';

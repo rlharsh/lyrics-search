@@ -1,8 +1,11 @@
 import React from 'react'
 
 import '../../assets/css/featured.css';
+import { useNavigate } from 'react-router-dom';
 
 const Featured = (props) => {
+
+    const navigate = useNavigate();
 
     const renderImage = () => {
         if (props.data != null) {
@@ -39,8 +42,13 @@ const Featured = (props) => {
         }
     }
 
+    const doClick = () => {
+        console.log(props.data.result.primary_artist.id)
+        navigate(`/lyrics/${props.data.result.id}/${props.data.result.primary_artist.id}`);
+    }
+
     return (
-        <div className='featured'>
+        <div className='featured' onClick={doClick}>
             { renderImage() }
             { renderTitle() }
             { renderArtist() }
