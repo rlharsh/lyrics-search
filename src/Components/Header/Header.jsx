@@ -9,7 +9,6 @@ const Header = () => {
     const navigate = useNavigate();
 
     const doSearch = () => {
-        console.log({search})
         navigate(`/search/${search}`, { state: { refresh: true }});
     }
 
@@ -21,7 +20,8 @@ const Header = () => {
                         setSearch(e.target.value);
                         doSearch();
                     }
-                }}/>
+                }}
+                />
             </div>
         </div>
     )
