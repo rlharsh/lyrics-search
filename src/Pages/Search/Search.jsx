@@ -21,9 +21,6 @@ const Search = () => {
 
 
     useEffect(() => {
-
-        console.log('Refresh: ' + shouldRefresh);
-
         if (location.state && location.state.refresh) {
             setShouldRefresh(true);
         }

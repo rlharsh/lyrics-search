@@ -39,10 +39,6 @@ const Featured = (props) => {
         }
     }
 
-    if (props.data != null) {
-        console.log(props.data.result);
-    }
-
     return (
         <div className='featured'>
             { renderImage() }
