@@ -4,7 +4,7 @@
 
 .hero-videobg {
   z-index: 10;
-  width: 40%;
+  width: 100%;
   min-height: 100vh;
   background-color: #1E1E1E;
   padding: none;
@@ -45,15 +45,16 @@
   color: #C0C0C0;
 }
 
-.search {
-  position: relative;
+.search-container {
+  margin-top: 2rem;
   padding: 0;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: 40%;
 }
-.search button {
+.search-container button {
   position: absolute;
   right: 1rem;
 }

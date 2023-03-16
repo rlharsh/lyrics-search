@@ -18,7 +18,7 @@ const Home = () => {
             
             <h1>Lyric Search</h1>
             <p>Search for any song you can think of.</p>
-            <div className='search'>
+            <div className='search-container'>
                 <input type="text" placeholder='Search by artist, title, or lyrics' onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                         setSearch(e.target.value);

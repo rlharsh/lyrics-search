@@ -3,8 +3,8 @@
 }
 
 .hero-videobg {
-  z-index: 10;
-    width:              40%;
+    z-index: 10;
+    width:              100%;
     min-height:         100vh;
     background-color:   #1E1E1E;
     padding:            none;
@@ -50,13 +50,14 @@
     }
 }
 
-.search {
-  position: relative;
+.search-container {
+  margin-top: 2rem;
   padding: 0;
-  position:         relative; 
-  display:          flex;
-  justify-content:  center;
-  align-items:      center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 40%;
 
   button {
     position: absolute;

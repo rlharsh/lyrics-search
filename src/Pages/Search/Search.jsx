@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
+import Header from '../../Components/Header/Header'
 
 import '../../assets/css/search.css';
 import Featured from '../../Components/Featured/Featured';
@@ -32,7 +33,7 @@ const Search = () => {
             const options = {
                 method: 'GET',
                 url: 'https://genius-song-lyrics1.p.rapidapi.com/search/',
-                params: {q: params.id, per_page: '50', page: '1'},
+                params: {q: params.id, per_page: '5', page: '1'},
                 headers: {
                   'X-RapidAPI-Key': apiKey,
                   'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
@@ -73,6 +74,7 @@ const Search = () => {
 
     return (
         <div className='search'>
+            <Header />
             <div className='search__left'>
             <h1>{params.id}</h1>
                 <h2>Featured Result</h2>

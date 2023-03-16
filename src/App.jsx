@@ -8,7 +8,6 @@ import Search from './Pages/Search/Search';
 function App() {
   return(
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route index element={<Home />} />
         <Route path='/search/:id' element={<Search />} />

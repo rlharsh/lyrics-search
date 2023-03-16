@@ -43,7 +43,6 @@ const Featured = (props) => {
     }
 
     const doClick = () => {
-        console.log(props.data.result.primary_artist.id)
         navigate(`/lyrics/${props.data.result.id}/${props.data.result.primary_artist.id}`);
     }
 
