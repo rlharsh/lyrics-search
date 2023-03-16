@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
+import '../../assets/css/lyrics.css';
+
 const Lyrics = () => {
 
     const params = useParams();
@@ -48,7 +50,7 @@ const Lyrics = () => {
     const linkRegex = /<a\s+(?:[^>]*?\s+)?href=(["']).*?\1[^>]*>.*?<\/a>/gi;
 
     
-    const sanitizeLyrics = (str) => str.replace(linkRegex, "");
+    const sanitizeLyrics = (str) => str.replace(/<a\b[^>]*>/i,"").replace(/<\/a>/i, "");
 
     const renderLyrics = () => {
         if (datas != null) {
