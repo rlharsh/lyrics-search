@@ -35,7 +35,7 @@ const Lyrics = () => {
         const options = {
             method: 'GET',
             url: 'https://genius-song-lyrics1.p.rapidapi.com/song/details/',
-            params: {id: params.id},
+            params: {id: params.id, text_format: 'plain'},
             headers: {
               'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
               'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
@@ -65,8 +65,9 @@ const Lyrics = () => {
               };
               
               axios.request(options).then(function (response) {
-                  console.log(response.data);
-                  setBackgroundImage(response.data.response.images[0].image.url)
+                  //console.log(response.data);
+                  // response.data.response.images[0].image.url
+                  setBackgroundImage(response.data.response)
               }).catch(function (error) {
                   console.error(error);
               });
@@ -111,13 +112,21 @@ const Lyrics = () => {
     }
 
     const renderSubHeader = () => {
-        if (songData != null) {
+        if (songData != null && backgroundImage != null) {
+
             return(
                 <div className='sub-header' style={{
-                    backgroundImage: "url(" + backgroundImage + ")"
+                    backgroundImage: "url(" + backgroundImage.images[0].image.url + ")"
 
                 }}> 
+                    <div className='data'>
+                        <h1>Song Information</h1>
+                        <p>{songData.song.description_preview}</p></div>
                     <div className='darken-area'></div>
+                    <div className='sub-header-information'>
+                        <h1> { backgroundImage.images[0].source.name }</h1>
+                        <p> <a href={ backgroundImage.images[0].source.page } target='_blank'> { backgroundImage.images[0].source.title } </a> </p>
+                    </div>
                 </div>
             )
         }

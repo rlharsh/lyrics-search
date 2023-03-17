@@ -131,6 +131,10 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .darken-area {
@@ -141,3 +145,45 @@
     width: 100%;
     height: 100%;
   }
+
+.data {
+    z-index: 1;
+    max-width: 1440px;
+    color: #FFF;
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        color:#C0C0C0;
+    }
+}
+
+.sub-header-information {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    color: #FFF;
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 500;
+    }
+
+    a {
+        color: #FFF;
+
+        &:visited, &:active {
+            color: #FFF;
+        }
+    }
+}

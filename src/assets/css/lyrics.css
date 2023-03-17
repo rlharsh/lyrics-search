@@ -114,6 +114,9 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .darken-area {
@@ -123,4 +126,40 @@
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
+}
+
+.data {
+  z-index: 1;
+  max-width: 1440px;
+  color: #FFF;
+}
+.data h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+.data p {
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  color: #C0C0C0;
+}
+
+.sub-header-information {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #FFF;
+}
+.sub-header-information h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.sub-header-information a {
+  color: #FFF;
+}
+.sub-header-information a:visited, .sub-header-information a:active {
+  color: #FFF;
 }/*# sourceMappingURL=lyrics.css.map */
