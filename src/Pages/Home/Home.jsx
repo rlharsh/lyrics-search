@@ -16,19 +16,27 @@ const Home = () => {
         <>
         <div className='hero-videobg'>
             
-            <h1>Lyric Search</h1>
-            <p>Search for any song you can think of.</p>
-            <div className='search-container'>
-                <input type="text" placeholder='Search by artist, title, or lyrics' onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                        setSearch(e.target.value);
-                        doSearch();
-                    }
-                }} onChange={(e) => setSearch(e.target.value)}/>
-                <button onClick={doSearch} type='button'>
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                </button>
+            <div className='hero-center'>
+                <div className='darken-area-one'></div>
+
+                <div className='center-container'>
+                    <h1>Lyric Search</h1>
+                    <p>Search for any song you can think of.</p>
+                    <div className='search-container'>
+                        <input type="text" placeholder='Search by artist, title, or lyrics' onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    setSearch(e.target.value);
+                                    doSearch();
+                                }
+                            }} onChange={(e) => setSearch(e.target.value)}/>
+                        <button onClick={doSearch} type='button'>
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
+            
         </div>
         </>
     )

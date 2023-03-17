@@ -11,6 +11,7 @@ const Lyrics = () => {
     const [datas, setDatas] = useState(null);
     const [songData, setSongData] = useState(null);
     const [backgroundImage, setBackgroundImage] = useState(null);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
         const options = {
@@ -46,7 +47,32 @@ const Lyrics = () => {
           }).catch(function (error) {
               console.error(error);
           });
+          
     }, []);
+
+    useEffect(() => {
+
+        if (songData != null) {
+
+            const options = {
+                method: 'GET',
+                url: 'https://joj-image-search.p.rapidapi.com/v2/',
+                params: {q: songData.song.artist_names + " musician imagesize:1920x1080", hl: 'en'},
+                headers: {
+                  'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                  'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
+                }
+              };
+              
+              axios.request(options).then(function (response) {
+                  console.log(response.data);
+                  setBackgroundImage(response.data.response.images[0].image.url)
+              }).catch(function (error) {
+                  console.error(error);
+              });
+
+    }
+    }, [songData])
 
     const sanitizeLyrics = (str) => str.replace(/<a\b[^>]*>/ig,"").replace(/<\/a>/ig, "");
 
@@ -61,6 +87,7 @@ const Lyrics = () => {
 
     const renderAlbumCover = () => {
         if (songData != null) {
+
             return (
                 <div className='album-cover-wrapper'>
                     <img className='album-cover' src={songData.song.song_art_image_url} alt="" />
@@ -75,18 +102,44 @@ const Lyrics = () => {
         }
     }
 
+    const renderPlayer = () => {
+        if (songData != null) {
+            return (
+                <iframe src={songData.song.apple_music_player_url} width='100%'></iframe>
+            )
+        }
+    }
+
+    const renderSubHeader = () => {
+        if (songData != null) {
+            return(
+                <div className='sub-header' style={{
+                    backgroundImage: "url(" + backgroundImage + ")"
+
+                }}> 
+                    <div className='darken-area'></div>
+                </div>
+            )
+        }
+    }
+
     return (
+        <>
+        { renderSubHeader() }
+
         <div className='lyric-wrapper'>
             <Header />
+
             <div className='lyric-wrapper__left'>
                 { renderAlbumCover() }
             </div>
             <div className='lyric-wrapper__right'>
                 <h2>Song Lyrics</h2>
                     { renderLyrics() }
-
             </div>
+
         </div>
+        </>
     )
 }
 
