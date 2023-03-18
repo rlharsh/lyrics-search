@@ -2,6 +2,9 @@ import React from 'react'
 
 import '../../assets/css/tile.css';
 
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 import { useNavigate } from 'react-router-dom';
 
 const Tile = (props) => {

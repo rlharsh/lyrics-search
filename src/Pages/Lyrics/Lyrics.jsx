@@ -5,6 +5,12 @@ import Header from '../../Components/Header/Header'
 
 import '../../assets/css/lyrics.css';
 
+import SpotifyWebApi from 'spotify-web-api-js';
+import SpotifyPlayer from 'react-spotify-web-playback';
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const Lyrics = () => {
 
     const params = useParams();
@@ -13,85 +19,76 @@ const Lyrics = () => {
     const [backgroundImage, setBackgroundImage] = useState(null);
     const [artistInfo, setArtistInfo] = useState(null);
 
-    useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/',
-            params: {id: params.id, text_format: 'html'},
-            headers: {
-              'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
-              'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-              setDatas(response.data);
-          }).catch(function (error) {
-              console.error(error);
-          });
-    }, []);
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken('<your-access-token>');
+
+    
 
     useEffect(() => {
-        const options = {
-            method: 'GET',
-            url: 'https://genius-song-lyrics1.p.rapidapi.com/song/details/',
-            params: {id: params.id, text_format: 'plain'},
-            headers: {
-              'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
-              'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-            }
-          };
-          
-          axios.request(options).then(function (response) {
-            console.log(response.data);
-              setSongData(response.data);
-          }).catch(function (error) {
-              console.error(error);
-          });
-          
-    }, []);
-
-    useEffect(() => {
-
-        if (songData != null) {
-
-            const options = {
+        const getLyrics = async () => {
+            const lyricsOptions = {
                 method: 'GET',
-                url: 'https://joj-image-search.p.rapidapi.com/v2/',
-                params: {q: songData.song.artist_names + " musician artist imagesize:1920x1080 -site:facebook.com -site:twitter.com", hl: 'en'},
+                url: 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/',
+                params: { id: params.id, text_format: 'html' },
                 headers: {
-                  'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
-                  'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
+                    'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                    'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                 }
-              };
-              
-              axios.request(options).then(function (response) {
-                  setBackgroundImage(response.data.response)
-              }).catch(function (error) {
-                  console.error(error);
-              })
-    }
-    }, [songData]);
-
-    useEffect(() => {
-        if (songData != null) {
-            const options = {
+            };
+    
+            const lyricsResponse = await axios.request(lyricsOptions);
+            setDatas(lyricsResponse.data);
+    
+            const songDetailsOptions = {
                 method: 'GET',
-                url: 'https://genius-song-lyrics1.p.rapidapi.com/artist/details/',
-                params: {id: params.artist},
+                url: 'https://genius-song-lyrics1.p.rapidapi.com/song/details/',
+                params: { id: params.id, text_format: 'plain' },
                 headers: {
-                  'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
-                  'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+                    'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                    'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                 }
-              };
-              
-              axios.request(options).then(function (response) {
-                  setArtistInfo(sanitizeLyrics(response.data.artist.description.html))
-              }).catch(function (error) {
-                  console.error(error);
-              });
-        }
-    }, [songData]);
+            };
+    
+            const songDetailsResponse = await axios.request(songDetailsOptions);
+            setSongData(songDetailsResponse.data);
+    
+            if (songDetailsResponse.data != null) {
+                const backgroundImageOptions = {
+                    method: 'GET',
+                    url: 'https://joj-image-search.p.rapidapi.com/v2/',
+                    params: {
+                        q: songDetailsResponse.data.song.artist_names + " musician artist imagesize:1920x1080 -site:facebook.com -site:twitter.com",
+                        hl: 'en'
+                    },
+                    headers: {
+                        'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                        'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
+                    }
+                };
+    
+                const backgroundImageResponse = await axios.request(backgroundImageOptions);
+                setBackgroundImage(backgroundImageResponse.data.response);
+            }
+    
+            if (songDetailsResponse.data != null) {
+                const artistDetailsOptions = {
+                    method: 'GET',
+                    url: 'https://genius-song-lyrics1.p.rapidapi.com/artist/details/',
+                    params: { id: params.artist },
+                    headers: {
+                        'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                        'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+                    }
+                };
+    
+                const artistDetailsResponse = await axios.request(artistDetailsOptions);
+                setArtistInfo(sanitizeLyrics(artistDetailsResponse.data.artist.description.html));
+            }
+        };
+    
+        getLyrics();
+    }, [params.id, params.artist]);
+    
 
     const doubleBr = (str) => {
         if (str != null) {
@@ -102,30 +99,53 @@ const Lyrics = () => {
     const sanitizeLyrics = (str) => str.replace(/<a\b[^>]*>/ig,"").replace(/<\/a>/ig, "");
 
     const renderLyrics = () => {
-        if (datas != null) {
-            return (
-                <div className='lyrics' dangerouslySetInnerHTML={{ __html: sanitizeLyrics(datas.lyrics.lyrics.body.html)}}></div>
-            )
+        if (!datas) {
+          // Render a skeleton while waiting for data to load
+          return (
+            <div className="lyrics">
+                <SkeletonTheme baseColor='#1E1E1E' highlightColor='#535353'>
+                    <Skeleton height={150} count={6} dark />
+                </SkeletonTheme>
+            </div>
+          );
         }
-    }
+      
+        // Once data is available, render the actual lyrics
+        const { lyrics } = datas;
+      
+        return (
+          <div className='lyrics' dangerouslySetInnerHTML={{ __html: sanitizeLyrics(lyrics.lyrics.body.html)}}></div>
+        );
+      };
 
-    const renderAlbumCover = () => {
-        if (songData != null) {
-
-            return (
-                <div className='album-cover-wrapper'>
-                    <img className='album-cover' src={songData.song.song_art_image_url} alt="" />
-                    <h1>
-                        { songData.song.title }
-                    </h1>
-                    <h2>
-                        { songData.song.artist_names }
-                    </h2>
-                </div>
-            )
+      const renderAlbumCover = () => {        
+        if (!songData) {
+          // Render a skeleton while waiting for data to load
+          return (
+            <div className='album-cover-wrapper'>
+                <SkeletonTheme baseColor='#1E1E1E' highlightColor='#535353'>
+                    <Skeleton height={300} />
+                    <Skeleton height={50} width={200} style={{ marginTop: "0.5rem" }} />
+                    <Skeleton height={30} width={150} style={{ marginTop: "0.25rem" }} />
+                </SkeletonTheme>
+            </div>
+          );
         }
-    }
-
+      
+        // Once data is available, render the actual album cover and information
+        return (
+          <div className='album-cover-wrapper'>
+            <img className='album-cover' src={songData.song.song_art_image_url} alt="" />
+            <h1>
+              { songData.song.title }
+            </h1>
+            <h2>
+              { songData.song.artist_names }
+            </h2>
+          </div>
+        );
+      };
+      
     const renderPlayer = () => {
         if (songData != null) {
             return (
@@ -134,45 +154,68 @@ const Lyrics = () => {
         }
     }
 
-    const renderSubFooter = () => {
-        return(
-            <div className='artist-info' dangerouslySetInnerHTML={{ __html: doubleBr(artistInfo) }}></div>
-        )
+const renderSubFooter = () => {
+  if (!artistInfo) {
+    // Render a skeleton while waiting for data to load
+    return (
+      <div className='artist-info'>
+        <SkeletonTheme baseColor='#1E1E1E' highlightColor='#535353'>
+            <Skeleton count={3} />
+        </SkeletonTheme>
+      </div>
+    );
+  }
+
+  // Once data is available, render the actual artist information
+  return (
+    <div className='artist-info' dangerouslySetInnerHTML={{ __html: doubleBr(artistInfo) }}></div>
+  );
+};
+
+
+const renderSubHeader = () => {
+    if (!songData || !backgroundImage) {
+      return (
+      <SkeletonTheme baseColor='#1E1E1E' highlightColor='#535353'>
+        <Skeleton height={500} />
+      </SkeletonTheme>
+      )
     }
-
-    const renderSubHeader = () => {
-        if (songData != null && backgroundImage != null) {
-
-            return(
-                <div className='sub-header' style={{
-                    backgroundImage: "url(" + backgroundImage.images[0].image.url + ")"
-
-                }}>
-                    
-                    {songData.song.description_preview !== "" && (
-                         <div className='data'>
-                            <h1>Song Information</h1>
-                            <p>{songData.song.description_preview}</p>
-                        </div>
-                    )}
-
-                    <div className='darken-area'></div>
-                   
-                    <div className='sub-header-information'>
-                        <h1> { backgroundImage.images[0].source.name }</h1>
-                        <p> <a href={ backgroundImage.images[0].source.page } target='_blank'> { backgroundImage.images[0].source.title } </a> </p>
-                    </div>
-
-                    {
-                        songData.song.youtube_url !== "" && (
-                            <a href={songData.song.youtube_url} target="_blank"><img className='icon' src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" /></a>
-                        ) 
-                    }
-
-                </div>
-            )
-        }
-    }
+  
+    const { images } = backgroundImage;
+    const { song } = songData;
+    const descriptionPreview = song.description_preview;
+    const youtubeUrl = song.youtube_url;
+  
+    return (
+      <div className="sub-header" style={{ backgroundImage: `url(${images[0].image.url})` }}>
+        {descriptionPreview && (
+          <div className="data">
+            <h1>Song Information</h1>
+            <p>{descriptionPreview}</p>
+          </div>
+        )}
+  
+        <div className="darken-area" />
+  
+        <div className="sub-header-information">
+          <h1>{images[0].source.name}</h1>
+          <p>
+            <a href={images[0].source.page} target="_blank">
+              {images[0].source.title}
+            </a>
+          </p>
+        </div>
+  
+        {youtubeUrl && (
+          <a href={youtubeUrl} target="_blank">
+            <img className="icon" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" />
+          </a>
+        )}
+      </div>
+    );
+  };
+      
 
     return (
         <>
