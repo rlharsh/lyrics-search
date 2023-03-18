@@ -58,7 +58,7 @@ const Lyrics = () => {
             const options = {
                 method: 'GET',
                 url: 'https://joj-image-search.p.rapidapi.com/v2/',
-                params: {q: songData.song.artist_names + " musician imagesize:1920x1080", hl: 'en'},
+                params: {q: songData.song.artist_names + " musician person imagesize:1920x1080", hl: 'en'},
                 headers: {
                   'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
                   'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
@@ -139,7 +139,7 @@ const Lyrics = () => {
                             <a href={songData.song.youtube_url} target="_blank"><img className='icon' src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" /></a>
                         ) 
                     }
-                    
+
                 </div>
             )
         }
