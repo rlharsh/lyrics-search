@@ -33,7 +33,7 @@ const Search = () => {
             const options = {
                 method: 'GET',
                 url: 'https://genius-song-lyrics1.p.rapidapi.com/search/',
-                params: {q: params.id, per_page: '5', page: '1'},
+                params: {q: params.id, per_page: '10', page: '1'},
                 headers: {
                   'X-RapidAPI-Key': apiKey,
                   'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
@@ -64,7 +64,6 @@ const Search = () => {
                     results.map(item => {
                         return <Tile key={uuid()} data={item} doClick={doClick}/>
                     })
-                
         )
     }
 
