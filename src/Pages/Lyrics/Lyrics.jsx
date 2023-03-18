@@ -58,7 +58,7 @@ const Lyrics = () => {
             const options = {
                 method: 'GET',
                 url: 'https://joj-image-search.p.rapidapi.com/v2/',
-                params: {q: songData.song.artist_names + " musician person imagesize:1920x1080", hl: 'en'},
+                params: {q: songData.song.artist_names + " musician imagesize:1920x1080", hl: 'en'},
                 headers: {
                   'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
                   'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
