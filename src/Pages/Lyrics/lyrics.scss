@@ -89,10 +89,11 @@
 }
 
 .icon {
-    width: 64px;
+    z-index: 1;
+    width: 72px;
     position: absolute;
-    bottom: 2.5rem;
-    right: 0;
+    bottom: 2rem;
+    right: 2rem;
 }
 
 .album-cover {

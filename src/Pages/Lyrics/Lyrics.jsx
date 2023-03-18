@@ -98,11 +98,6 @@ const Lyrics = () => {
                     <h2>
                         { songData.song.artist_names }
                     </h2>
-                    {
-                        songData.song.youtube_url !== "" && (
-                            <a href={songData.song.youtube_url} target="_blank"><img className='icon' src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" /></a>
-                        ) 
-                    }
                 </div>
             )
         }
@@ -138,6 +133,13 @@ const Lyrics = () => {
                         <h1> { backgroundImage.images[0].source.name }</h1>
                         <p> <a href={ backgroundImage.images[0].source.page } target='_blank'> { backgroundImage.images[0].source.title } </a> </p>
                     </div>
+
+                    {
+                        songData.song.youtube_url !== "" && (
+                            <a href={songData.song.youtube_url} target="_blank"><img className='icon' src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" /></a>
+                        ) 
+                    }
+                    
                 </div>
             )
         }
