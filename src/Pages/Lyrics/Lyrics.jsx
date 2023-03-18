@@ -43,6 +43,7 @@ const Lyrics = () => {
           };
           
           axios.request(options).then(function (response) {
+            console.log(response.data);
               setSongData(response.data);
           }).catch(function (error) {
               console.error(error);
@@ -79,7 +80,6 @@ const Lyrics = () => {
 
     const renderLyrics = () => {
         if (datas != null) {
-            
             return (
                 <div className='lyrics' dangerouslySetInnerHTML={{ __html: sanitizeLyrics(datas.lyrics.lyrics.body.html)}}></div>
             )
@@ -98,6 +98,11 @@ const Lyrics = () => {
                     <h2>
                         { songData.song.artist_names }
                     </h2>
+                    {
+                        songData.song.youtube_url !== "" && (
+                            <a href={songData.song.youtube_url} target="_blank"><img className='icon' src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" /></a>
+                        ) 
+                    }
                 </div>
             )
         }
@@ -118,11 +123,17 @@ const Lyrics = () => {
                 <div className='sub-header' style={{
                     backgroundImage: "url(" + backgroundImage.images[0].image.url + ")"
 
-                }}> 
-                    <div className='data'>
-                        <h1>Song Information</h1>
-                        <p>{songData.song.description_preview}</p></div>
+                }}>
+                    
+                    {songData.song.description_preview !== "" && (
+                         <div className='data'>
+                            <h1>Song Information</h1>
+                            <p>{songData.song.description_preview}</p>
+                        </div>
+                    )}
+
                     <div className='darken-area'></div>
+                   
                     <div className='sub-header-information'>
                         <h1> { backgroundImage.images[0].source.name }</h1>
                         <p> <a href={ backgroundImage.images[0].source.page } target='_blank'> { backgroundImage.images[0].source.title } </a> </p>
