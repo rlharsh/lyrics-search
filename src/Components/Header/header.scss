@@ -1,3 +1,5 @@
+@import '../../breakpoint.scss';
+
 .header-wrapper {
     box-sizing: border-box;
     width:      100%;
@@ -15,6 +17,11 @@
         max-width:      1440px;
         margin:         0 auto;
 
+        @include media("<max") {
+            padding: 0;
+            max-width: 80%;
+        }
+
         display:        flex;
 
         input[type='text'] {
@@ -27,6 +34,10 @@
             font-size:          1.2rem;
             font-family:        'Montserrat', sans-serif;
             color:              #FFF;
+
+            @include media("<=desktop") {
+                width: 100%;
+            }
         }
 
         button {

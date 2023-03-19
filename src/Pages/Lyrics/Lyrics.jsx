@@ -11,6 +11,7 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
+
 const Lyrics = () => {
 
     const params = useParams();
@@ -21,8 +22,6 @@ const Lyrics = () => {
 
     const spotifyApi = new SpotifyWebApi();
     spotifyApi.setAccessToken('<your-access-token>');
-
-    
 
     useEffect(() => {
         const getLyrics = async () => {
@@ -57,7 +56,7 @@ const Lyrics = () => {
                     method: 'GET',
                     url: 'https://joj-image-search.p.rapidapi.com/v2/',
                     params: {
-                        q: songDetailsResponse.data.song.artist_names + " musician artist imagesize:1920x1080 -site:facebook.com -site:twitter.com",
+                        q: songDetailsResponse.data.song.artist_names + " musician artist imagesize:1920x1080 -site:facebook.com -site:twitter.com -site:circleallaccess.com -site:wbir.com -site:instagram.com -site:carolinacountrymusicfest.com",
                         hl: 'en'
                     },
                     headers: {
