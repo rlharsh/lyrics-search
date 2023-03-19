@@ -112,7 +112,6 @@ const Lyrics = () => {
       
         // Once data is available, render the actual lyrics
         const { lyrics } = datas;
-      
         return (
           <div className='lyrics' dangerouslySetInnerHTML={{ __html: sanitizeLyrics(lyrics.lyrics.body.html)}}></div>
         );
@@ -142,6 +141,9 @@ const Lyrics = () => {
             <h2>
               { songData.song.artist_names }
             </h2>
+            <h3>
+              { songData.song.release_date_for_display }
+            </h3>
           </div>
         );
       };
@@ -185,7 +187,7 @@ const renderSubHeader = () => {
     const { images } = backgroundImage;
     const { song } = songData;
     const descriptionPreview = song.description_preview;
-    const youtubeUrl = song.youtube_url;
+    const youtubeUrl = song.youtube_url.replace(/www\.youtube\.com/, "music.youtube.com");
   
     return (
       <div className="sub-header" style={{ backgroundImage: `url(${images[0].image.url})` }}>
@@ -198,6 +200,7 @@ const renderSubHeader = () => {
   
         <div className="darken-area" />
   
+        <div className='copyright'>
         <div className="sub-header-information">
           <h1>{images[0].source.name}</h1>
           <p>
@@ -206,12 +209,12 @@ const renderSubHeader = () => {
             </a>
           </p>
         </div>
-  
         {youtubeUrl && (
           <a href={youtubeUrl} target="_blank">
-            <img className="icon" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" />
+            <img className="icon" src="https://cdn.cdnlogo.com/logos/y/83/youtube-music.svg" />
           </a>
         )}
+        </div>
       </div>
     );
   };

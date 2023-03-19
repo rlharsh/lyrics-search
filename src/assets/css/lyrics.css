@@ -15,7 +15,6 @@
   gap: 1rem;
   position: sticky;
   top: 8rem;
-  padding: 1rem;
   align-self: flex-start;
 }
 .lyric-wrapper__left h1 {
@@ -46,7 +45,7 @@
 
 .lyrics {
   line-height: 40px;
-  color: #C0C0C0;
+  color: #ffb14b;
 }
 
 .album-cover-wrapper {
@@ -55,7 +54,6 @@
   position: relative;
   transition: all 0.2 ease-in-out;
   max-width: 488px;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
 }
@@ -65,10 +63,16 @@
   line-height: 44px;
   font-size: 2.25rem;
   margin-top: 0.5rem;
+  color: #ffb14b;
 }
 .album-cover-wrapper h2 {
   font-size: 1.5rem;
   line-height: 39px;
+  text-align: center;
+  color: #C0C0C0;
+}
+.album-cover-wrapper h3 {
+  font-size: 1rem;
   text-align: center;
   color: #C0C0C0;
 }
@@ -84,6 +88,7 @@
 }
 .artist-info em {
   font-weight: 700;
+  color: #ffb14b;
 }
 .artist-info hr {
   display: none;
@@ -106,7 +111,7 @@
 
 .icon {
   z-index: 1;
-  width: 72px;
+  width: 164px;
   position: absolute;
   bottom: 2rem;
   right: 2rem;
@@ -118,9 +123,6 @@
   position: relative;
   border-radius: 10px;
   transition: 0.2s ease-in-out;
-}
-.album-cover:hover {
-  transform: scale(1.02);
 }
 
 .player {
@@ -154,9 +156,20 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.copyright {
+  background-color: green;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  max-width: 1440px;
 }
 
 .darken-area {

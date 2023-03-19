@@ -20,7 +20,7 @@ const Home = () => {
                 <div className='darken-area-one'></div>
 
                 <div className='center-container'>
-                    <h1>Lyric Search</h1>
+                    <h1>Lyrical Genius</h1>
                     <p>Search for any song you can think of.</p>
                     <div className='search-container'>
                         <input type="text" placeholder='Search by artist, title, or lyrics' onKeyDown={(e) => {
