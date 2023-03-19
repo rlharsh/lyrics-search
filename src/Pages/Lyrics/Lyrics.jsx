@@ -187,7 +187,7 @@ const renderSubHeader = () => {
     const { images } = backgroundImage;
     const { song } = songData;
     const descriptionPreview = song.description_preview;
-    const youtubeUrl = song.youtube_url.replace(/www\.youtube\.com/, "music.youtube.com");
+    const youtubeUrl = song.youtube_url !== null ? song.youtube_url.replace(/www\.youtube\.com/, "music.youtube.com") : null;
   
     return (
       <div className="sub-header" style={{ backgroundImage: `url(${images[0].image.url})` }}>
