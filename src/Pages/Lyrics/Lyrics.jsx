@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import Header from '../../Components/Header/Header'
@@ -9,7 +9,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 
-const Lyrics = () => {
+const Lyrics = ({handleChatValue}) => {
 
     const params = useParams();
     const [datas, setDatas] = useState(null);
@@ -139,9 +139,33 @@ const Lyrics = () => {
             <h3>
               { songData.song.release_date_for_display }
             </h3>
+            <div className='button-container'>
+            <button onClick={() => handleClick(`What is ${songData.song.artist_names}'s most popular song?`)}>
+              Most Popular Song
+            </button>
+            <button onClick={() => handleClick(`What are some artists similar to ${songData.song.artist_names}?`)}>
+              Similar Artists
+            </button>
+            <button onClick={() => handleClick(`What are some songs similar to ${songData.song.title} by ${songData.song.artist_names}?`)}>
+              Similar Songs
+            </button>
+            <button onClick={() => handleClick(`What is the genre of ${songData.song.title} by ${songData.song.artist_names} considered?`)}>
+              What Genre is {songData.song.title}
+            </button>
+            <button onClick={() => handleClick(`What are some interesting facts about ${songData.song.artist_names}?`)}>
+              Interesting {songData.song.artist_names} Facts
+            </button>
+            <button onClick={() => handleClick(`Is the lead singer of ${songData.song.artist_names} still alive?`)}>
+              Is {songData.song.artist_names} Still Alive?
+            </button>
+            </div>
           </div>
         );
       };
+
+      const handleClick = useCallback((e) => {
+        handleChatValue(e);
+      }, [handleChatValue]);
       
     const renderPlayer = () => {
         if (songData != null) {

@@ -1,0 +1,10 @@
+chat {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+}/*# sourceMappingURL=chat.css.map */

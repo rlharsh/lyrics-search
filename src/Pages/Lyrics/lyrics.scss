@@ -276,3 +276,28 @@
         }
     }
 }
+
+.button-container {
+    display:    flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem 0;
+    gap: 1rem;
+
+    button {
+        background-color: transparent;
+        border: 1px solid #ffb14b;
+        color:  #C0C0C0;
+        font-family:        'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        border-radius: 5px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            color: #1E1E1E;
+            background-color: #ffb14b;
+        }
+    }
+}
