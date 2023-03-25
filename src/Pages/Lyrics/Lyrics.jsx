@@ -5,9 +5,6 @@ import Header from '../../Components/Header/Header'
 
 import '../../assets/css/lyrics.css';
 
-import SpotifyWebApi from 'spotify-web-api-js';
-import SpotifyPlayer from 'react-spotify-web-playback';
-
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -20,8 +17,7 @@ const Lyrics = () => {
     const [backgroundImage, setBackgroundImage] = useState(null);
     const [artistInfo, setArtistInfo] = useState(null);
 
-    const spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken('<your-access-token>');
+    const lyricApiKey = import.meta.env.VITE_LYRICS_API_KEY;
 
     useEffect(() => {
         const getLyrics = async () => {
@@ -30,7 +26,7 @@ const Lyrics = () => {
                 url: 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/',
                 params: { id: params.id, text_format: 'html' },
                 headers: {
-                    'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                    'X-RapidAPI-Key': lyricApiKey,
                     'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                 }
             };
@@ -43,7 +39,7 @@ const Lyrics = () => {
                 url: 'https://genius-song-lyrics1.p.rapidapi.com/song/details/',
                 params: { id: params.id, text_format: 'plain' },
                 headers: {
-                    'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                    'X-RapidAPI-Key': lyricApiKey,
                     'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                 }
             };
@@ -60,7 +56,7 @@ const Lyrics = () => {
                         hl: 'en'
                     },
                     headers: {
-                        'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                        'X-RapidAPI-Key': lyricApiKey,
                         'X-RapidAPI-Host': 'joj-image-search.p.rapidapi.com'
                     }
                 };
@@ -75,7 +71,7 @@ const Lyrics = () => {
                     url: 'https://genius-song-lyrics1.p.rapidapi.com/artist/details/',
                     params: { id: params.artist },
                     headers: {
-                        'X-RapidAPI-Key': '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566',
+                        'X-RapidAPI-Key': lyricApiKey,
                         'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                     }
                 };

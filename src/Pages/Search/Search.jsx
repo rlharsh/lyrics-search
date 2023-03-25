@@ -18,7 +18,7 @@ const Search = () => {
     const location = useLocation();
 
     const params = useParams();
-    const apiKey = '03692bb862msh0a4c9d7ed758965p156a4ajsna6812c358566';
+    const apiKey = import.meta.env.VITE_LYRICS_API_KEY;
 
     useEffect(() => {
         if (location.state && location.state.refresh) {
