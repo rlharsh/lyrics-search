@@ -17,7 +17,7 @@ const Lyrics = ({handleChatValue}) => {
     const [backgroundImage, setBackgroundImage] = useState(null);
     const [artistInfo, setArtistInfo] = useState(null);
 
-    const lyricApiKey = import.meta.env.VITE_LYRICS_API_KEY;
+    const lyricApiKey = import.meta.env.VITE_LYRICS_API_KEY || process.env.VITE_LYRICS_API_KEY;
 
     useEffect(() => {
         const getLyrics = async () => {

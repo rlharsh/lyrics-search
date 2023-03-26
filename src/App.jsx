@@ -11,8 +11,8 @@ import Chat from './Components/Chat/Chat.jsx';
 
 function App() {
 
-  const openAIkey = import.meta.env.VITE_OPENAI_API_KEY;
-  const orginizationKey = import.meta.env.VITE_OPENAI_ORGINIZATION;
+  const openAIkey = import.meta.env.VITE_OPENAI_API_KEY || process.env.VITE_OPEN_API_KEY;
+  const orginizationKey = import.meta.env.VITE_OPENAI_ORGINIZATION || process.env.VITE_OPENAI_ORGINIZATION;
 
   const openai = new OpenAIApi(new Configuration({
     organization: orginizationKey,
