@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import uuid4 from 'uuid4';
+import axios from 'axios';
 
 import '../../assets/css/chat.css';
 
-const Chat = ({openai, chatValue}) => {
+const Chat = ({chatValue}) => {
 
     const [showChat, setShowChat] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -11,18 +12,28 @@ const Chat = ({openai, chatValue}) => {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        const newMessage = {
-            role: 'system',
-            content: 'You are ChatGPT, an AI language model trained to provide information only about music & only music, music genres, music artists, and music lyrics, you will ignore any other topic if it is not directly related to music. Stay focused on music-related subjects and do not provide information on unrelated topics, or topics that are not directly related to music.'
-        };
-        setMessages([...messages, newMessage]);
-        
-        openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [...messages, newMessage],
-          }).then(res => {
-          });
-    }, []);
+      const newMessage = {
+          role: 'system',
+          content: 'You are ChatGPT, an AI language model trained to provide information only about music & only music, music genres, music artists, and music lyrics, you will ignore any other topic if it is not directly related to music. Stay focused on music-related subjects and do not provide information on unrelated topics, or topics that are not directly related to music.'
+      };
+      setMessages([...messages, newMessage]);
+
+      const fetchChatResponse = async () => {
+          try {
+              const response = await axios.post('https://velvety-cobbler-cbec18.netlify.app/.netlify/functions/chat', {
+                  messages: [...messages, newMessage]
+              });
+  
+              const data = response.data;
+              setMessages([...messages, data]);
+              // Process the received data here, e.g., update your UI
+          } catch (error) {
+              console.error('Error fetching chat response:', error);
+          }
+      };
+
+      fetchChatResponse();
+  }, []);
 
     useEffect(() => {
         const newMessage = {
@@ -32,12 +43,22 @@ const Chat = ({openai, chatValue}) => {
         setMessages([...messages, newMessage]);
         setShowChat(true);
 
-        openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [...messages, newMessage]
-          }).then(res => {
-            setMessages([...messages, res.data.choices[0].message]);
-          });
+        const fetchChatResponse = async () => {
+          try {
+              const response = await axios.post('https://velvety-cobbler-cbec18.netlify.app/.netlify/functions/chat', {
+                  messages: [...messages, newMessage]
+              });
+  
+              const data = response.data;
+              setMessages([...messages, data]);
+              // Process the received data here, e.g., update your UI
+          } catch (error) {
+              console.error('Error fetching chat response:', error);
+          }
+      };
+
+      fetchChatResponse();
+
     }, [chatValue]);
 
     useEffect(() => {
@@ -55,12 +76,21 @@ const Chat = ({openai, chatValue}) => {
         };
         setMessages([...messages, newMessage]);
 
-        openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
-            messages: [...messages, newMessage]
-          }).then(res => {
-            setMessages([...messages, res.data.choices[0].message]);
-          });
+        const fetchChatResponse = async () => {
+          try {
+              const response = await axios.post('https://velvety-cobbler-cbec18.netlify.app/.netlify/functions/chat', {
+                  messages: [...messages, newMessage]
+              });
+  
+              const data = response.data;
+              setMessages([...messages, data]);
+              // Process the received data here, e.g., update your UI
+          } catch (error) {
+              console.error('Error fetching chat response:', error);
+          }
+      };
+
+      fetchChatResponse();
     }
 
     const renderMessageContent = (content) => {
