@@ -152,9 +152,6 @@ const Lyrics = ({handleChatValue}) => {
             <button onClick={() => handleClick(`What is the genre of ${songData.song.title} by ${songData.song.artist_names} considered?`)}>
               What Genre is {songData.song.title}
             </button>
-            <button onClick={() => handleClick(`What are some interesting facts about ${songData.song.artist_names}?`)}>
-              Interesting {songData.song.artist_names} Facts
-            </button>
             <button onClick={() => handleClick(`Is the lead singer of ${songData.song.artist_names} still alive?`)}>
               Is {songData.song.artist_names} Still Alive?
             </button>
