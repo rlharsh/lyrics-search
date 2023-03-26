@@ -36,7 +36,6 @@ const Chat = ({openai, chatValue}) => {
             model: "gpt-3.5-turbo",
             messages: [...messages, newMessage]
           }).then(res => {
-            console.log(res.data.choices[0].message);
             setMessages([...messages, res.data.choices[0].message]);
           });
     }, [chatValue]);
@@ -60,7 +59,6 @@ const Chat = ({openai, chatValue}) => {
             model: "gpt-3.5-turbo",
             messages: [...messages, newMessage]
           }).then(res => {
-            console.log(res.data.choices[0].message);
             setMessages([...messages, res.data.choices[0].message]);
           });
     }
